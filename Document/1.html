@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        input{
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+    </style>
+    <form id="form">
+        <input type="text" >
+        <input type="text" >
+        <input type="text" >
+        <input type="text" >
+        <input type="text" >
+        <input type="text" >
+    </form>
+    <script>
+        let inputs=document.querySelectorAll("input")
+
+        
+        for (const v of inputs) {
+            v.oninput=checkCode
+            
+        }
+        //定义函数
+        function checkCode(e){
+           var next= e.target.nextElementSibling
+            if(next){
+                next.focus()
+            }
+            if(form.lastElementChild.value!=''){
+                form.lastElementChild.blur()
+            }
+            
+        }
+
+        window.onkeydown=function(e){
+            if(e.keyCode==8){
+                let body=document.querySelector("body")
+               let prev=e.target.previousElementSibling
+                prev.value='';
+                prev.focus()
+                if(e.target===body){
+                    form.lastElementChild.focus()
+                    form.lastElementChild.value=""
+                }
+                
+            }
+            
+        }
+
+        
+    </script>
+</body>
+</html>
